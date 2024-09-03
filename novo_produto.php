@@ -1,13 +1,23 @@
-<?php include "cabecalho.php" ?>
+<?php include "cabecalho.php";?>
+<?php include "conexao.php";?> 
 
 <?php
-if( isset($_GET['valor']) && isset($_GET['descricao']))
+if( isset($_POST['valor']) && isset($_POST['Descricao']))
 {
-    echo "<h1> ".$_GET['valor']." descrição: ". $_GET['descricao']. " <h1>";
+    $descricao = $_POST['Descricao'];
+    $valor = str_replace(",",".",$_POST['valor']);
+    $query = "Insert into produtos (Descricao, Valor)
+                VALUES( '$descricao', $valor )";
+
+    $resultado = mysqli_query($conexao, $query);
+
+    if($resultado){
+    echo "<div class='alert alert-success'>Salvo com sucesso</div>";
+    }
 }
 ?>
 
-<form action="novo_produto.php"; method="get">
+<form action="novo_produto.php"; method="post">
     <label for="">Descrição do Produto</label>
     <input class="form-control" name="Descricao" />
     <br>
