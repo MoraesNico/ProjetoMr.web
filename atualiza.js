@@ -5,3 +5,4 @@ function atualizarPagina() {
 const intervalo = 2000; // 2 seg
 
 setInterval(atualizarPagina, intervalo);
+
