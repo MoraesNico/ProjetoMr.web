@@ -6,12 +6,31 @@ if( isset($_POST['valor']) && isset($_POST['Descricao']))
 {
     $descricao = $_POST['Descricao'];
     $valor = str_replace(",",".",$_POST['valor']);
-    $query = "Insert into produtos (Descricao, Valor)
-                VALUES( '$descricao', $valor )";
+    $imagem = "";
+    if(isset($_FILES['imagem']))
+    {
+        $nomearquivo = $_FILES['imagem']['name'];
+        $tmpNomeArquivo = $_FILES['imagem']['tmp_name'];
+        $caminhoDestino = "/img/" . basename($nomeArquivo);
+        if (move_uploaded_file($tmpNomeArquivo, $caminhoDestino)){
+            echo"Imagem enviada com sucesso: " . htmlspecialchars($nomeArquivo);
+            $imagem = basename($nomeArquivo);
+        } else{
+            echo"Erro ao enviar a imagem.";
+            $imagem = "semfoto.png";
+        }
+    }
+    else
+    {
+        $imagem = "semfoto.png";
+    }
+    $query = "Insert into produtos (Descricao, Valor, Imagem)
+                VALUES( '$descricao', $valor, '$imagem' )";
 
     $resultado = mysqli_query($conexao, $query);
 
     if($resultado){
+    header('location: produtos.php');        
     echo "<div class='alert alert-success'>Salvo com sucesso</div>";
     }
 }
