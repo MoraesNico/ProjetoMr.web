@@ -51,8 +51,8 @@
                     echo "<td>" . $row["Descricao"] . "</td>";
                     echo "<td>" . $row["Valor"] . "</td>";
                     echo "<td><img src='/".basename(__DIR__)."/img/".$row["Imagem"]."' width='50' height='50' class='img-fluid' /></td>";
-                    echo "<td><a class='btn btn-warning' href='editar_produto.php?id=$row[id]'>Editar</a>  ";
-                    echo "<a class='btn btn-danger' href='excluir_produto.php?id=$row[id]'>Excluir</a></td>";
+                    echo "<td><a class='btn btn-warning'>Editar</a>  ";
+                    echo "<a class='btn btn-danger'>Excluir</a></td>";
                     echo "</tr>";
                 }
             } else {
